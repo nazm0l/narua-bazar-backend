@@ -1,0 +1,21 @@
+{
+    "name": "Narua Bazar Backend",
+    "build": {
+      "dockerfile": "../Dockerfile",
+      "context": ".."
+    },
+    "workspaceFolder": "/app",
+    "mounts": [
+      "source=${localWorkspaceFolder},target=/app,type=bind",
+      "target=/app/node_modules,type=volume"
+    ],
+    "runArgs": [
+      "--name",
+      "narua-bazar-backend",
+      "-p",
+      "5000:5000",
+      "--rm"
+    ],
+    "postCreateCommand": "npm install"
+  }
+  

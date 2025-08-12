@@ -1,10 +1,10 @@
 import express from 'express';
+import { userController } from './user.controller';
 
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
-  res.status(200).json({ message: 'User module is working' });
-});
+router.get('/', userController.getAllUsers);
+router.post('/create', userController.createUser);
 
 export const userRoutes = router;

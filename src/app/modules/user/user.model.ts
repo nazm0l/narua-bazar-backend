@@ -3,7 +3,6 @@ import { IUser } from "./user.interface";
 
 
 const UserSchema: Schema<IUser> = new Schema({
-  id: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -13,7 +12,7 @@ const UserSchema: Schema<IUser> = new Schema({
     enum: ["superadmin", "admin", "contributor"],
     default: "contributor",
   },
-  lastLogin: { type: Date },
+  lastLogin: { type: Date, default: Date.now },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

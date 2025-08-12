@@ -1,10 +1,16 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
+import { userRoutes } from "./app/modules/user/user.routes";
 
 const app: Application = express();
 
 app.use(express.json());
 app.use(cors());
+
+
+// Importing API routes
+app.use("/api/v1/user", userRoutes);
+
 
 app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({ status: "The server is on health" });

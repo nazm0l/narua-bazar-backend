@@ -4,13 +4,13 @@ import { userService } from "./user.service";
 
 const createUser = async (req: Request, res: Response) => {
   try {
-    const {user} = req.body;
+    const { user } = req.body;
 
-    const result = await userService.createUser(user);
+    const result = await userService.createUserToDB(user);
     res.status(201).json({ message: "User created successfully", data: result });
 
   } catch (error: any) {
-    res.status(500).json({ message:"Something went wrong", error: error.message });
+    res.status(500).json({ message: "Something went wrong", error: error.message });
   }
 };
 
@@ -18,8 +18,8 @@ const loginUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
-    const user = await userService.loginUser(email, password);
-    
+    const user = await userService.loginUserFromDB(email, password);
+
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
@@ -34,8 +34,8 @@ const loginUser = async (req: Request, res: Response) => {
 
 const getAllUsers = async (req: Request, res: Response) => {
   try {
-    const users = await userService.getAllUsers();
-    res.status(200).json({message: "Users fetched successfully", data: users});
+    const users = await userService.getAllUsersFromDB();
+    res.status(200).json({ message: "Users fetched successfully", data: users });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong", error });
   }
@@ -44,7 +44,7 @@ const getAllUsers = async (req: Request, res: Response) => {
 const getUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const user = await userService.getUserById(id);
+    const user = await userService.getUserByIdFromDB(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -62,12 +62,12 @@ const updateUserById = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Invalid request data" });
     }
 
-    const updatedUser = await userService.updateUserById(id, req.body);
+    const updatedUser = await userService.updateUserByIdFromDB(id, req.body);
 
-    res.status(200).json({message: "User updated successfully", data: updatedUser});
+    res.status(200).json({ message: "User updated successfully", data: updatedUser });
 
   } catch (error) {
-    res.status(500).json({message: "Something went wrong", error})
+    res.status(500).json({ message: "Something went wrong", error })
   }
 }
 

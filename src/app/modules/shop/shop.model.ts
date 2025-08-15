@@ -1,5 +1,11 @@
 import mongoose, { Schema } from "mongoose";
-import { IShop } from "./shop.interface";
+import { IShop, IShopItems } from "./shop.interface";
+
+
+const ProductSchema: Schema<IShopItems> = new Schema({
+  name: { type: String, required: true },
+  imgUrl: { type: String, required: true }
+});
 
 
 const ShopSchema: Schema<IShop> = new Schema({
@@ -13,6 +19,7 @@ const ShopSchema: Schema<IShop> = new Schema({
   website: { type: String, default: "" },
   isOpen: { type: Boolean, default: true },
   isVerified: { type: Boolean, default: false },
+  products: { type: [ProductSchema], default: [] },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

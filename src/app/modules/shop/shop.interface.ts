@@ -1,4 +1,10 @@
 
+
+export interface IShopItems {
+  name: string;
+  imgUrl: string;
+}
+
 export interface IShop {
   name: string;
   description: string;
@@ -10,6 +16,7 @@ export interface IShop {
   website?: string;
   isOpen: boolean;
   isVerified: boolean;
-  createdAt?: Date; 
-  updatedAt?: Date; 
+  products?: IShopItems[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }

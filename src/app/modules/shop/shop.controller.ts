@@ -61,9 +61,9 @@ const updateShopById = async (req: Request, res: Response) => {
   try {
 
     const { id } = req.params
-    const { data } = req.body
+    const { shop } = req.body
 
-    const updatedShop = await shopService.updateShopByIdFromDB(id, data)
+    const updatedShop = await shopService.updateShopByIdFromDB(id, shop)
 
     res.status(200).json({
       success: true,

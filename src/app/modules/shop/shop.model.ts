@@ -19,10 +19,10 @@ const ShopSchema: Schema<IShop> = new Schema({
   website: { type: String, default: "" },
   isOpen: { type: Boolean, default: true },
   isVerified: { type: Boolean, default: false },
-  products: { type: [ProductSchema], default: [] },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
-});
+  products: { type: [ProductSchema], default: [] }
+},
+  { timestamps: true }
+);
 
 const shopModel = mongoose.model<IShop>("Shop", ShopSchema);
 

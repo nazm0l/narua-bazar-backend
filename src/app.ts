@@ -1,7 +1,8 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { userRoutes } from "./app/modules/user/user.routes";
-import { shopRoutes } from "./app/modules/shop/shop.router";
+import { shopRoutes } from "./app/modules/shop/shop.routes";
+import { newsRoutes } from "./app/modules/news/news.routes";
 
 const app: Application = express();
 
@@ -12,6 +13,7 @@ app.use(cors());
 // Importing API routes
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/shop", shopRoutes);
+app.use("/api/v1/news", newsRoutes)
 
 
 app.get("/health", (req: Request, res: Response) => {

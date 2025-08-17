@@ -15,9 +15,33 @@ const getAllNewsFromDB = async (): Promise<INews[]> => {
   return news
 }
 
+const getNewsByIdFromDB = async (id: string): Promise<INews | null> => {
+  const news = await newsModel.findById(id)
+
+  return news
+}
+
+const updateNewsByIdFromDB = async (id: string, data: Partial<INews>): Promise<INews | null> => {
+  const news = await newsModel.findByIdAndUpdate(id, data)
+
+  return news
+}
+
+const deleteNewsByIdFromDB = async (id: string): Promise<INews | null> => {
+  const news = await newsModel.findByIdAndDelete(id);
+
+  if (!news) {
+    throw new Error("News not found");
+  }
+
+  return news
+}
 
 
 export const newsService = {
   createNewsIntoDB,
-  getAllNewsFromDB
+  getAllNewsFromDB,
+  getNewsByIdFromDB,
+  updateNewsByIdFromDB,
+  deleteNewsByIdFromDB
 }

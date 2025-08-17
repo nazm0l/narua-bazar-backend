@@ -44,14 +44,81 @@ const getAllNews = async (req: Request, res: Response) => {
       message: 'Something went wrong',
       error: error.message,
     });
-
   }
-
 }
 
+const getNewsById = async (req: Request, res: Response) => {
+  try {
+
+    const { id } = req.params
+
+    const news = await newsService.getNewsByIdFromDB(id)
+
+    res.status(200).json({
+      success: true,
+      message: "News fetched successfully",
+      data: news
+    })
+
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong',
+      error: error.message,
+    });
+  }
+}
+
+const updateNewsById = async (req: Request, res: Response) => {
+  try {
+
+    const { id } = req.params
+    const { news } = req.body
+
+    const result = await newsService.updateNewsByIdFromDB(id, news)
+
+    res.status(200).json({
+      success: true,
+      message: "News updated successfully",
+      data: result
+    })
+
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong',
+      error: error.message,
+    });
+  }
+}
+
+const deleteNewsById = async (req: Request, res: Response) => {
+  try {
+
+    const { id } = req.params
+
+    const news = await newsService.deleteNewsByIdFromDB(id)
+
+    res.status(200).json({
+      success: true,
+      message: "News deleted successfully",
+      data: news
+    })
+
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong',
+      error: error.message,
+    });
+  }
+}
 
 
 export const newsController = {
   createNews,
-  getAllNews
+  getAllNews,
+  getNewsById,
+  updateNewsById,
+  deleteNewsById
 }

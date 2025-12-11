@@ -1,9 +1,10 @@
-import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
-import { userRoutes } from "./app/modules/user/user.routes";
-import { shopRoutes } from "./app/modules/shop/shop.routes";
-import { newsRoutes } from "./app/modules/news/news.routes";
+import express, { Application, NextFunction, Request, Response } from "express";
 import { infoRoutes } from "./app/modules/info/info.routes";
+import { newsRoutes } from "./app/modules/news/news.routes";
+import { siteSettingsRoutes } from "./app/modules/settings/siteSettings.routes";
+import { shopRoutes } from "./app/modules/shop/shop.routes";
+import { userRoutes } from "./app/modules/user/user.routes";
 
 const app: Application = express();
 
@@ -16,6 +17,7 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/shop", shopRoutes);
 app.use("/api/v1/news", newsRoutes)
 app.use("/api/v1/info", infoRoutes)
+app.use("/api/v1/settings", siteSettingsRoutes)
 
 
 app.get("/health", (req: Request, res: Response) => {

@@ -40,7 +40,7 @@ const siteSettingsSchema: Schema<ISiteSettings> = new Schema({
   newsPage: {
     title: { type: String },
     subtitle: { type: String },
-    newsTitle: { type: String }
+    newsTitle: { type: String },
     eventTitle: { type: String }
   },
   eventPage: {
@@ -66,7 +66,7 @@ const siteSettingsSchema: Schema<ISiteSettings> = new Schema({
   footer: {
     logoUrl: { type: String },
     description: { type: String }
-  }
+  },
   footerText: { type: String },
   copyrightText: { type: String },
   maintenanceMode: { type: Boolean, default: false },

@@ -13,7 +13,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     const decoded = verifyToken(token);
 
     // attach to request (express types augmented in src/types/express.d.ts)
-    (req as any).user = { id: decoded.id, role: decoded.role };
+    req.user = { id: decoded.id, role: decoded.role };
 
     next();
   } catch (err: any) {

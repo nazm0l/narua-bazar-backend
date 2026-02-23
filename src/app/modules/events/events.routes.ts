@@ -1,12 +1,12 @@
 import express from 'express'
-import { newsController } from './news.controller'
+import { eventsController } from './events.controller'
 
 const router = express.Router()
 
-router.post("/create", newsController.createNews)
-router.get("/", newsController.getAllNews)
-router.get("/:id", newsController.getNewsById)
-router.put("/:id", newsController.updateNewsById)
-router.delete("/:id", newsController.deleteNewsById)
+router.post("/create", eventsController.createEvents)
+router.get("/", eventsController.getAllEvents)
+router.get("/:id", eventsController.getEventsById)
+router.put("/:id", eventsController.updateEventsById)
+router.delete("/:id", eventsController.deleteEventsById)
 
-export const newsRoutes = router
+export const eventsRoutes = router

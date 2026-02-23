@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-export interface INews {
+export interface IEvents {
   title: string;
   description: string;
   imgUrl: string;

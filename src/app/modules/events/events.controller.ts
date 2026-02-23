@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
-import { newsService } from "./events.service";
+import { eventsService } from "./events.service";
 
 
-const createNews = async (req: Request, res: Response) => {
+const createEvents = async (req: Request, res: Response) => {
 
   try {
 
-    const { news } = req.body
+    const { event } = req.body
 
-    const result = await newsService.createNewsIntoDB(news);
+    const result = await eventsService.createEventsIntoDB(event);
 
     res.status(201).json({
       success: true,
-      message: "News successfully created",
+      message: "Events successfully created",
       data: result
     })
 
@@ -26,15 +26,14 @@ const createNews = async (req: Request, res: Response) => {
 
 }
 
-const getAllNews = async (req: Request, res: Response) => {
+const getAllEvents = async (req: Request, res: Response) => {
 
   try {
 
-    const result = await newsService.getAllNewsFromDB();
-
+    const result = await eventsService.getAllEventsFromDB();
     res.status(200).json({
       success: true,
-      message: "News fetched successfully",
+      message: "Events fetched successfully",
       data: result
     })
 
@@ -47,17 +46,17 @@ const getAllNews = async (req: Request, res: Response) => {
   }
 }
 
-const getNewsById = async (req: Request, res: Response) => {
+const getEventsById = async (req: Request, res: Response) => {
   try {
 
     const { id } = req.params
 
-    const news = await newsService.getNewsByIdFromDB(id)
+    const events = await eventsService.getEventsByIdFromDB(id)
 
     res.status(200).json({
       success: true,
-      message: "News fetched successfully",
-      data: news
+      message: "Events fetched successfully",
+      data: events
     })
 
   } catch (error: any) {
@@ -69,17 +68,16 @@ const getNewsById = async (req: Request, res: Response) => {
   }
 }
 
-const updateNewsById = async (req: Request, res: Response) => {
+const updateEventsById = async (req: Request, res: Response) => {
   try {
 
     const { id } = req.params
-    const { news } = req.body
-
-    const result = await newsService.updateNewsByIdFromDB(id, news)
+    const { event } = req.body
+    const result = await eventsService.updateEventsByIdFromDB(id, event)
 
     res.status(200).json({
       success: true,
-      message: "News updated successfully",
+      message: "Events updated successfully",
       data: result
     })
 
@@ -92,17 +90,16 @@ const updateNewsById = async (req: Request, res: Response) => {
   }
 }
 
-const deleteNewsById = async (req: Request, res: Response) => {
+const deleteEventsById = async (req: Request, res: Response) => {
   try {
 
     const { id } = req.params
 
-    const news = await newsService.deleteNewsByIdFromDB(id)
-
+    const events = await eventsService.deleteEventsByIdFromDB(id)
     res.status(200).json({
       success: true,
-      message: "News deleted successfully",
-      data: news
+      message: "Events deleted successfully",
+      data: events
     })
 
   } catch (error: any) {
@@ -115,10 +112,10 @@ const deleteNewsById = async (req: Request, res: Response) => {
 }
 
 
-export const newsController = {
-  createNews,
-  getAllNews,
-  getNewsById,
-  updateNewsById,
-  deleteNewsById
+export const eventsController = {
+  createEvents,
+  getAllEvents,
+  getEventsById,
+  updateEventsById,
+  deleteEventsById
 }

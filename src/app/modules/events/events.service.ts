@@ -1,4 +1,4 @@
-import { INews } from "./events.interface";
+import { IEvents } from "./events.interface";
 import newsModel from "./events.model";
 
 
@@ -9,39 +9,38 @@ const createNewsIntoDB = async (data: INews): Promise<INews | null> => {
   return result
 }
 
-const getAllNewsFromDB = async (): Promise<INews[]> => {
-  const news = await newsModel.find()
+const getAllEventsFromDB = async (): Promise<IEvents[]> => {
+  const events = await eventsModel.find()
 
-  return news
+  return events
 }
 
-const getNewsByIdFromDB = async (id: string): Promise<INews | null> => {
-  const news = await newsModel.findById(id)
-
-  return news
+const getEventsByIdFromDB = async (id: string): Promise<IEvents | null> => {
+  const events = await eventsModel.findById(id)
+  return events
 }
 
-const updateNewsByIdFromDB = async (id: string, data: Partial<INews>): Promise<INews | null> => {
-  const news = await newsModel.findByIdAndUpdate(id, data)
+const updateEventsByIdFromDB = async (id: string, data: Partial<IEvents>): Promise<IEvents | null> => {
+  const events = await eventsModel.findByIdAndUpdate(id, data)
 
-  return news
+  return events
 }
 
-const deleteNewsByIdFromDB = async (id: string): Promise<INews | null> => {
-  const news = await newsModel.findByIdAndDelete(id);
+const deleteEventsByIdFromDB = async (id: string): Promise<IEvents | null> => {
+  const events = await eventsModel.findByIdAndDelete(id);
 
-  if (!news) {
-    throw new Error("News not found");
+  if (!events) {
+    throw new Error("Events not found");
   }
 
-  return news
+  return events
 }
 
 
-export const newsService = {
-  createNewsIntoDB,
-  getAllNewsFromDB,
-  getNewsByIdFromDB,
-  updateNewsByIdFromDB,
-  deleteNewsByIdFromDB
-}
+export const eventsService = {
+  createEventsIntoDB,
+  getAllEventsFromDB,
+  getEventsByIdFromDB,
+  updateEventsByIdFromDB,
+  deleteEventsByIdFromDB
+} 

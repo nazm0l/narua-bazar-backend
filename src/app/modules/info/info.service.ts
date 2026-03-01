@@ -8,7 +8,7 @@ const getAllInfoFromDB = async (): Promise<IInfo[]> => {
 }
 
 const updateInfoByIdFromDB = async (id: string, data: Partial<IInfo>): Promise<IInfo | null> => {
-  const news = await infoModel.findByIdAndUpdate(id, data)
+  const news = await infoModel.findByIdAndUpdate(id, data, { new: true })
 
   return news
 }

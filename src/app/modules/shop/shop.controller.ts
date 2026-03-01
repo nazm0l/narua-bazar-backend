@@ -85,7 +85,7 @@ const deleteShopById = async (req: Request, res: Response) => {
 
     const { id } = req.params
 
-    const deletedItem = shopService.deleteShopByIdFromDB(id)
+    const deletedItem = await shopService.deleteShopByIdFromDB(id)
 
     res.status(200).json({
       success: true,

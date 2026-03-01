@@ -22,7 +22,7 @@ const getNewsByIdFromDB = async (id: string): Promise<INews | null> => {
 }
 
 const updateNewsByIdFromDB = async (id: string, data: Partial<INews>): Promise<INews | null> => {
-  const news = await newsModel.findByIdAndUpdate(id, data)
+  const news = await newsModel.findByIdAndUpdate(id, data, { new: true })
 
   return news
 }

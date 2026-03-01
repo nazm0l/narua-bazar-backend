@@ -6,7 +6,7 @@ const infoSchema: Schema<IInfo> = new Schema({
   totalVillages: { type: Number },
   totalWards: { type: Number },
   totalPrimarySchools: { type: Number },
-  toalHighSchools: { type: Number },
+  totalHighSchools: { type: Number },
   totalColleges: { type: Number },
   totalHospitals: { type: Number },
   totalBanks: { type: Number },

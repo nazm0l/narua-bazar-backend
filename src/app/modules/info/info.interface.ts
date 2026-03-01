@@ -4,7 +4,7 @@ export interface IInfo {
   totalVillages: number;
   totalWards: number;
   totalPrimarySchools: number;
-  toalHighSchools: number;
+  totalHighSchools: number;
   totalColleges: number;
   totalHospitals: number;
   totalBanks: number;

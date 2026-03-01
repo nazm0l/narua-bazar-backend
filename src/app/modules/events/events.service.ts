@@ -1,10 +1,10 @@
 import { IEvents } from "./events.interface";
-import newsModel from "./events.model";
+import eventsModel from "./events.model";
 
 
 
-const createNewsIntoDB = async (data: INews): Promise<INews | null> => {
-  const result = await newsModel.create(data);
+const createEventsIntoDB = async (data: IEvents): Promise<IEvents | null> => {
+  const result = await eventsModel.create(data);
 
   return result
 }

@@ -1,5 +1,6 @@
 import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
+import { eventsRoutes } from "./app/modules/events/events.routes";
 import { infoRoutes } from "./app/modules/info/info.routes";
 import { newsRoutes } from "./app/modules/news/news.routes";
 import { siteSettingsRoutes } from "./app/modules/settings/siteSettings.routes";
@@ -13,11 +14,12 @@ app.use(cors());
 
 
 // Importing API routes
+app.use("/api/v1/events", eventsRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/shop", shopRoutes);
-app.use("/api/v1/news", newsRoutes)
-app.use("/api/v1/info", infoRoutes)
-app.use("/api/v1/settings", siteSettingsRoutes)
+app.use("/api/v1/news", newsRoutes);
+app.use("/api/v1/info", infoRoutes);
+app.use("/api/v1/settings", siteSettingsRoutes);
 
 
 app.get("/health", (req: Request, res: Response) => {

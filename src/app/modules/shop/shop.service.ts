@@ -13,8 +13,19 @@ const createShopIntoDB = async (shopData: IShop) => {
   return shop;
 };
 
-const getAllShopsFromDB = async (): Promise<IShop[]> => {
-  const shops = await shopModel.find();
+const getAllShopsFromDB = async (query: Record<string, unknown>): Promise<IShop[]> => {
+  const { category, search } = query;
+  const filter: Record<string, unknown> = {};
+
+  if (category) {
+    filter.category = category;
+  }
+
+  if (search) {
+    filter.name = { $regex: search, $options: "i" };
+  }
+
+  const shops = await shopModel.find(filter);
   return shops;
 }
 

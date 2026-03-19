@@ -11,5 +11,10 @@ export default {
   saltRounds: Number(process.env.SALT_ROUNDS) || 10,
   // JWT settings
   jwtSecret: process.env.JWT_SECRET || '7f$9mK#2xL@pQ!vR*wN&yB%zC^dE+jF|gH~sT(uV)aW=bX[cY]dZ{eF}hG<iJ>kL',
-  jwtExpiresIn: process.env.JWT_EXPIRES_IN || '1h'
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN || '1h',
+  cloudinary: {
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  }
 }

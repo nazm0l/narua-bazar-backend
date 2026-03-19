@@ -10,18 +10,18 @@ const createUser = async (req: Request, res: Response) => {
     const result = await userService.createUserIntoDB(user);
     // don't return password
     const safeUser = {
-      id: (result as any)._id,
-      name: (result as any).name,
-      email: (result as any).email,
-      role: (result as any).role,
-      isActive: (result as any).isActive,
-      createdAt: (result as any).createdAt,
-      updatedAt: (result as any).updatedAt,
+      id: result?._id?.toString(),
+      name: result?.name,
+      email: result?.email,
+      role: result?.role,
+      isActive: result?.isActive,
+      createdAt: result?.createdAt,
+      updatedAt: result?.updatedAt,
     };
     res.status(201).json({ message: "User created successfully", data: safeUser });
 
-  } catch (error: any) {
-    res.status(500).json({ message: "Something went wrong", error: error.message });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong", error: error instanceof Error ? error.message : "Unknown error" });
   }
 };
 
@@ -36,21 +36,21 @@ const loginUser = async (req: Request, res: Response) => {
     }
 
     // sign JWT
-    const token = signToken({ id: (user as any)._id.toString(), role: (user as any).role });
+    const token = signToken({ id: user._id?.toString() || "", role: user.role });
 
     const safeUser = {
-      id: (user as any)._id,
-      name: (user as any).name,
-      email: (user as any).email,
-      role: (user as any).role,
-      isActive: (user as any).isActive,
-      lastLogin: (user as any).lastLogin,
+      id: user._id?.toString(),
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      isActive: user.isActive,
+      lastLogin: user.lastLogin,
     };
 
     res.status(200).json({ message: "Login successful", data: { user: safeUser, token } });
 
-  } catch (error: any) {
-    res.status(500).json({ message: "Something went wrong", error: error.message });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong", error: error instanceof Error ? error.message : "Unknown error" });
   }
 }
 

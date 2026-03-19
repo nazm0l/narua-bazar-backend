@@ -5,7 +5,7 @@ export interface INews {
   title: string;
   description: string;
   imgUrl: string;
-  createdBy: mongoose.Types.ObjectId;
-  createdAt: Date;
-  updatedAt: Date;
+  createdBy: mongoose.Types.ObjectId | string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

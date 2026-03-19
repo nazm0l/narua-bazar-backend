@@ -6,6 +6,7 @@ import { newsRoutes } from "./app/modules/news/news.routes";
 import { siteSettingsRoutes } from "./app/modules/settings/siteSettings.routes";
 import { shopRoutes } from "./app/modules/shop/shop.routes";
 import { userRoutes } from "./app/modules/user/user.routes";
+import { uploadRoutes } from "./app/modules/upload/upload.routes";
 
 const app: Application = express();
 
@@ -20,6 +21,7 @@ app.use("/api/v1/shop", shopRoutes);
 app.use("/api/v1/news", newsRoutes);
 app.use("/api/v1/info", infoRoutes);
 app.use("/api/v1/settings", siteSettingsRoutes);
+app.use("/api/v1/upload", uploadRoutes);
 
 
 app.get("/health", (req: Request, res: Response) => {
@@ -27,8 +29,8 @@ app.get("/health", (req: Request, res: Response) => {
 });
 
 //error handling
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  res.status(500).json({ message: err.message });
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  res.status(500).json({ message: err.message || "Internal Server Error" });
 });
 
 //Not Found

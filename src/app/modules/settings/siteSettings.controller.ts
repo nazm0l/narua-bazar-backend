@@ -18,11 +18,11 @@ const getSiteSettings = async (req: Request, res: Response) => {
       message: "Site settings fetched successfully",
       data: result
     });
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Something went wrong",
-      error: error.message
+      error: error instanceof Error ? error.message : "Unknown error"
     });
   }
 };
@@ -39,11 +39,11 @@ const createOrUpdateSiteSettings = async (req: Request, res: Response) => {
       message: "Site settings saved successfully",
       data: result
     });
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Something went wrong",
-      error: error.message
+      error: error instanceof Error ? error.message : "Unknown error"
     });
   }
 };
@@ -60,11 +60,11 @@ const updateSiteSettings = async (req: Request, res: Response) => {
       message: "Site settings updated successfully",
       data: result
     });
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Something went wrong",
-      error: error.message
+      error: error instanceof Error ? error.message : "Unknown error"
     });
   }
 };
@@ -79,11 +79,11 @@ const deleteSiteSettings = async (req: Request, res: Response) => {
       message: "Site settings deleted successfully",
       data: result
     });
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Something went wrong",
-      error: error.message
+      error: error instanceof Error ? error.message : "Unknown error"
     });
   }
 };

@@ -16,8 +16,11 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     req.user = { id: decoded.id, role: decoded.role };
 
     next();
-  } catch (err: any) {
-    return res.status(401).json({ message: 'Invalid or expired token', error: err.message });
+  } catch (err) {
+    return res.status(401).json({ 
+      message: 'Invalid or expired token', 
+      error: err instanceof Error ? err.message : 'Unknown error' 
+    });
   }
 };
 

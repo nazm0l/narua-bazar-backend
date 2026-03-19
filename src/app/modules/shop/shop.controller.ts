@@ -4,19 +4,19 @@ import { shopService } from "./shop.service";
 
 const createShop = async (req: Request, res: Response) => {
   try {
-    const { shop } = req.body;
+    const shopData = req.body;
 
-    const result = await shopService.createShopIntoDB(shop);
-    res.status(201).json({ message: "Shop created successfully", data: result });
+    const result = await shopService.createShopIntoDB(shopData);
+    res.status(201).json({ success: true, message: "Shop created successfully", data: result });
 
-  } catch (error: any) {
-    res.status(500).json({ message: "Something went wrong", error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Something went wrong", error: error instanceof Error ? error.message : "Unknown error" });
   }
 };
 
 const getAllShops = async (req: Request, res: Response) => {
   try {
-    const shops = await shopService.getAllShopsFromDB();
+    const shops = await shopService.getAllShopsFromDB(req.query);
     res.status(200).json({
       success: true,
       message: "Shops fetched successfully",
@@ -24,11 +24,11 @@ const getAllShops = async (req: Request, res: Response) => {
     })
 
 
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: 'Something went wrong',
-      error: error.message,
+      error: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 }
@@ -47,11 +47,11 @@ const getShopById = async (req: Request, res: Response) => {
       data: result
     })
 
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: 'Something went wrong',
-      error: error.message,
+      error: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 
@@ -61,9 +61,9 @@ const updateShopById = async (req: Request, res: Response) => {
   try {
 
     const { id } = req.params
-    const { shop } = req.body
+    const shopData = req.body
 
-    const updatedShop = await shopService.updateShopByIdFromDB(id, shop)
+    const updatedShop = await shopService.updateShopByIdFromDB(id, shopData)
 
     res.status(200).json({
       success: true,
@@ -71,11 +71,11 @@ const updateShopById = async (req: Request, res: Response) => {
       data: updatedShop
     })
 
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: 'Something went wrong',
-      error: error.message,
+      error: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 }
@@ -93,11 +93,11 @@ const deleteShopById = async (req: Request, res: Response) => {
       data: deletedItem
     })
 
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: 'Something went wrong',
-      error: error.message,
+      error: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 }

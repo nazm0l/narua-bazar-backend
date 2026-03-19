@@ -14,11 +14,11 @@ const getAllInfo = async (req: Request, res: Response) => {
       data: result
     })
 
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: 'Something went wrong',
-      error: error.message,
+      error: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 }
@@ -37,11 +37,11 @@ const updateInfo = async (req: Request, res: Response) => {
       data: result
     })
 
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: 'Something went wrong',
-      error: error.message,
+      error: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 }

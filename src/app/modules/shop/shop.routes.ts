@@ -5,7 +5,8 @@ import { shopController } from './shop.controller';
 const router = express.Router()
 
 
-router.post('/create', authMiddleware, shopController.createShop);
+router.post('/create', shopController.createShop);
+// router.post('/create', authMiddleware, shopController.createShop);
 router.get('/', shopController.getAllShops);
 router.get('/:id', shopController.getShopById);
 router.put('/:id', authMiddleware, shopController.updateShopById);
